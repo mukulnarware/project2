@@ -1,5 +1,3 @@
-
-
 ////////////////
 // const yearWiseBowler = require("../ipl/yearWiseBowler");
 // const saveEconomicBowlerByUserInput = require("../index");
@@ -21,27 +19,23 @@ function fetchData() {
   alert("You Have Entered: " +uYear+ " !   Data fetched successfully...     ");
   
 
-  fetch("./data5.json")
-  .then(r => r.json())
-  .then( function(r){
-    visualizeData5(uYear,r)
-  }).json
+fetch(`/give?YEAR=${uYear}`)
+.then(r => r.json())
+.then(visualizeData5);
+
+
+
+  // fetch("./data5.json")
+  // .then(r => r.json())
+  // .then( function(r){
+  //   visualizeData5(uYear,r)
+  // }).json
   
 }
 
-function visualizeData5(y,data) {
-  var a = {};
-  for (let x in data) {
-    a[x]=data[x];
-  
-  }
-  
-  const seriesData = [];
-  for (let name in a[y]) {
-    seriesData.push([name,a[y][name]]);
-  }
-  
-  visualizeYearWiseBowler(y,seriesData);
+function visualizeData5(data) {
+    alert("inside visulize...");
+  visualizeYearWiseBowler(yr,data);
   
   // document.write(seriesData);
   // alert("y:" +seriesData);
