@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "ipl": "node index.js",
-    "start": "node public/app1.js"
+    "start": "node app1.js"
   },
   "keywords": [],
   "author": "",

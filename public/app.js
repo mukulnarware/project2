@@ -17,7 +17,7 @@ function fetchData() {
   // alert(typeof(uYear))
   // `/api/p?YEAR=${uYear}`
 
-  fetch("/api/p?YEAR=" + uYear)
+  fetch("/api?YEAR="+uYear)
     .then((res) => res.json())
     .then(visualizeData5)
     .catch((err) => {

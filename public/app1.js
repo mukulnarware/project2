@@ -4,7 +4,7 @@ const myData = require("./data5");
 
 const express = require("express")
 const app = express();
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 3000;
 
 
 
@@ -24,38 +24,38 @@ app.use(express.static("../public"))
 
 
 
-app.get('/api', (req, res) => {
+app.get('/', (req, res) => {
 
   res.sendFile(__dirname + "/index.html");
-  return
+  
 });
 
-app.get("/api", (req, res) => {
+app.get("/pp", (req, res) => {
 
   res.sendFile(__dirname + "/styles.css");
-  return
+
 });
 
-app.get("/api", (req, res) => {
+app.get("/", (req, res) => {
 
   res.sendFile(__dirname + "/app.js");
-  return
+  
 });
 
-app.get("/api", (req, res) => {
+app.get("/", (req, res) => {
 
   res.sendFile(__dirname + "/app1.js");
-  return
+  
 });
 
 
-app.get("/api", (req, res) => {
+app.get("/", (req, res) => {
 
   res.sendFile("../index.js");
   return
 });
 
-app.get('/api/p', (req, res) => {
+app.get('/api', (req, res) => {
   //res.send(req.query.YEAR);
   // res.sendFile(__dirname+"/data3.json");
   const year = req.query.YEAR
