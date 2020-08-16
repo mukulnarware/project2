@@ -55,12 +55,12 @@ app.use(express.static("public/"))
 //   return
 // });
 
-// app.get('/api', (req, res) => {
+app.get('/api', (req, res) => {
   //res.send(req.query.YEAR);
   // res.sendFile(__dirname+"/data3.json");
-  // const year = req.query.YEAR
+  const year = req.query.YEAR
 
-  //  var a = {};
+   var a = {};
   // for (let x in myData) {
   //   a[x] = myData[x];
 
@@ -70,13 +70,13 @@ app.use(express.static("public/"))
   // for (let name in a[year]) {
   //   seriesData.push([name, a[year][name]]);
   // }
-  // a[year]=myData[year];
+  a[year]=myData[year];
   // console.log(a);
-  // res.send(a)
+  res.send(a)
 
-  // return
+  return
 
-// });
+});
 
 
 app.listen(port);
