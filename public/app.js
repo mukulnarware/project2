@@ -1,7 +1,4 @@
 ////////////////
-// const yearWiseBowler = require("../ipl/yearWiseBowler");
-// const saveEconomicBowlerByUserInput = require("../index");
-
 
 function start() {
   document.querySelector(".UBtn").addEventListener("click", fetchData);
@@ -11,42 +8,34 @@ start();
 function fetchData() {
 
   var uYear = document.querySelector(".UInput").value;
- if(2008>parseInt(uYear) || 2019<parseInt(uYear)){
-   alert(`You Have Enterd Wrong Season: ${uYear}. Please Enter Value Between 2008-2019`);
-   return 0;
- }
-  
-  alert("You Have Entered: " +uYear+ " !   Data fetched successfully...     ");
-  
+  if (2008 > parseInt(uYear) || 2019 < parseInt(uYear)) {
+    alert(`You Have Enterd Wrong Season: ${uYear}. Please Enter Value Between 2008-2019`);
+    return 0;
+  }
 
-fetch(`/give?YEAR=${uYear}`)
-.then(r => r.json())
-.then(visualizeData5);
+  alert("You Have Entered: " + uYear + " !   Data fetched successfully...     ");
+  // alert(typeof(uYear))
+  // `/api/p?YEAR=${uYear}`
+
+  fetch("/api/p?YEAR=" + uYear)
+    .then((res) => res.json())
+    .then(visualizeData5)
+    .catch((err) => {
+      console.log("error..." + err);
+    });
 
 
-
-  // fetch("./data5.json")
-  // .then(r => r.json())
-  // .then( function(r){
-  //   visualizeData5(uYear,r)
-  // }).json
-  
 }
 
 function visualizeData5(data) {
-    alert("inside visulize...");
-  visualizeYearWiseBowler(yr,data);
-  
+  // alert("inside visulize..."+data);
+
+
+  visualizeYearWiseBowler(data);
+
   // document.write(seriesData);
   // alert("y:" +seriesData);
 }
-
-
-
-
-
-
-
 
 function fetchAndVisualizeData() {
   fetch("./data.json")
@@ -85,7 +74,7 @@ fetchAndVisualizeData();
 
 
 function visualizeData(data) {
-  
+
   visualizeMatchesPlayedPerYear(data.matchesPlayedPerYear);
   return;
 }
@@ -113,15 +102,26 @@ function visualizeData4(data) {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function visualizeYearWiseBowler(yr,seriesData) {
+function visualizeYearWiseBowler(data) {
 
-   
+  let keyObject = Object.keys(data);
+  var key = keyObject[0];
+  // alert("plottt="+key+" "+data);
+  const seriesData = [];
+  for (let name in data[key]) {
+
+    seriesData.push([name, data[key][name]]);
+  }
+
+  // alert("==>"+seriesData)
+  // document.write(seriesData);
   Highcharts.chart('year-wise-bowler', {
     chart: {
+
       type: 'column'
     },
     title: {
-      text: `Top 10 Economical Bowlers Of Season ${yr} With Economy Rates`
+      text: `Top 10 Economical Bowlers Of Season ${key} With Economy Rates`
     },
     subtitle: {
       text: 'Source: <a href="http://en.wikipedia.org/wiki/List_of_cities_proper_by_population">IPL Dataset</a>'
@@ -173,16 +173,13 @@ function visualizeYearWiseBowler(yr,seriesData) {
 }
 
 
-
-
-
 function visualizeMatchesPlayedPerYear(matchesPlayedPerYear) {
-  
+
   const seriesData = [];
   for (let year in matchesPlayedPerYear) {
     seriesData.push([year, matchesPlayedPerYear[year]]);
   }
-  
+
   // Highcharts.chart("matches-played-per-year", {
   //   chart: {
   //     type: "column"

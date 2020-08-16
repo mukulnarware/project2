@@ -1,5 +1,5 @@
 
-{
+const mydata={
     
         "2008": {
             "TM Dilshan": 3,
@@ -147,3 +147,11 @@
         }
     
 }
+
+
+
+
+
+
+
+module.exports=mydata;
