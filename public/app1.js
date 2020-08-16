@@ -24,32 +24,32 @@ app.use(express.static("../public"))
 
 
 
-app.get('/', (req, res) => {
+app.get( (req, res) => {
 
   res.sendFile(__dirname + "/index.html");
   
 });
 
-app.get("/pp", (req, res) => {
+app.get( (req, res) => {
 
   res.sendFile(__dirname + "/styles.css");
 
 });
 
-app.get("/", (req, res) => {
+app.get( (req, res) => {
 
   res.sendFile(__dirname + "/app.js");
   
 });
 
-app.get("/", (req, res) => {
+app.get((req, res) => {
 
   res.sendFile(__dirname + "/app1.js");
   
 });
 
 
-app.get("/", (req, res) => {
+app.get( (req, res) => {
 
   res.sendFile("../index.js");
   return
